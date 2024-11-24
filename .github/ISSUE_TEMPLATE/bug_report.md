@@ -1,3 +1,4 @@
+---
 name: Bug Report
 description: Report a bug or issue in the project.
 labels: bug
@@ -48,3 +49,4 @@ body:
       label: Additional Context
       description: Add any other context or screenshots that might help us understand the issue.
       placeholder: Include logs, screenshots, or other supporting materials.
+---
