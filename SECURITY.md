@@ -3,7 +3,7 @@
 ## Reporting a Vulnerability
 If you find any security vulnerability in the repo, e.g. in our src folder or in our GitHub Actions configurations, we appreciate your effort in responsibly disclosing it to us.
 
-### How to Report a Security Vulnerability?
+### How to Report a Security Vulnerability or Bugs?
 Please report any security vulnerability by opening an issue in our GitHub repository. Provide as much information as possible about the vulnerability, including:
 
 1. **Detailed Description of the Vulnerability**
