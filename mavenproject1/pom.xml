@@ -10,4 +10,47 @@
         <maven.compiler.release>17</maven.compiler.release>
         <exec.mainClass>com.mycompany.codeReview.Mavenproject1</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version> <!-- Ensure a compatible version -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version> <!-- Ensure a recent version -->
+                    <configuration>
+                        <source>8</source> <!-- Set to the Java version you're using -->
+                        <target>8</target> <!-- Ensure the target matches your JDK -->
+                    </configuration>
+            </plugin>
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <!-- Path to your Checkstyle configuration file -->
+                        <configLocation>google_checks.xml</configLocation>
+                        <encoding>UTF-8</encoding>
+                        <consoleOutput>true</consoleOutput>
+                        <failOnViolation>true</failOnViolation>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>
+
