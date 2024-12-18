@@ -1,0 +1,44 @@
+name: Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+
+    - name: Install Semgrep
+      run: pip install semgrep
+
+    - name: Run Checkstyle
+      run: mvn checkstyle:check
+
+    - name: Run Unit Tests
+      run: mvn test
+
+    - name: Run Coverage Analysis
+      run: mvn jacoco:report
+
+    - name: Ensure 90% Coverage
+      run: |
+        COVERAGE=$(mvn jacoco:report | grep -oP 'TOTAL\s+\K\d+')
+        if [ "$COVERAGE" -lt 90 ]; then
+          echo "Coverage is below 90%: $COVERAGE"
+          exit 1
+        fi
+
+    - name: Run Performance Tests
+      run: mvn test -Pperformance
+
+    - name: Run SAST
+      run: semgrep --config p/ci --error
