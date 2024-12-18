@@ -1,34 +1,15 @@
-# Pull Request Template
+### Description
 
-## Description
+Please provide a brief description of the changes you are proposing.
 
-- Please provide a detailed description of the changes proposed in this pull request.
-- Include any relevant context or background information for reviewers to understand the changes.
+### Type of Change
 
-## Related Issues
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Documentation update
+- [ ] Other (please describe)
 
-- Link to any related issues or feature requests:
-  - Resolves #<issue_number>
-  - Partially addresses #<issue_number>
+### Checklist
 
-## Checklist
-
-- [ ] My code follows the style guidelines of this project.
-- [ ] I have performed a self-review of my code.
-- [ ] I have commented my code, particularly in hard-to-understand areas.
-- [ ] I have made corresponding changes to the documentation.
-- [ ] I have added tests to verify my changes.
-- [ ] All new and existing tests pass.
-
-## Steps to Test Changes
-
-1. Describe how reviewers can verify your changes.
-2. Include any commands or instructions.
-
-## Additional Context
-
-- Add any other context, screenshots, or notes about the pull request here.
-
----
-
-**IMPORTANT:** Ensure that your pull request complies with the repository's contribution guidelines. Non-compliant pull requests may be rejected.
+- [ ] I have tested this code and ensured it works as expected.
+- [ ] I have updated any relevant documentation.
