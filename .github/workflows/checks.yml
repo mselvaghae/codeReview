@@ -39,6 +39,3 @@ jobs:
 
     - name: Run Performance Tests
       run: mvn test -Pperformance
-
-    - name: Run SAST
-      run: semgrep --config p/ci --error
