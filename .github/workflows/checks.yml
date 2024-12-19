@@ -20,9 +20,6 @@ jobs:
     - name: Install Semgrep
       run: pip install semgrep
 
-    - name: Navigate to Project Directory
-      run: cd codeReview/mavenproject1
-
     - name: Run Checkstyle
       run: mvn checkstyle:check
 

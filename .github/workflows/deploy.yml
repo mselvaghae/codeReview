@@ -23,8 +23,6 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-m2
-    - name: Navigate to Project Directory
-      run: cd codeReview/mavenproject1
 
     - name: Build and Deploy to GitHub Maven Registry
       run: mvn clean install deploy
