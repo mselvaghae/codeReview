@@ -1,0 +1,59 @@
+name: Build, Deploy, and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-maven:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-m2
+    - name: Build and Deploy to GitHub Maven Registry
+      run: mvn clean install deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-javadoc:
+    needs: deploy-maven
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Generate Javadoc
+      run: mvn javadoc:javadoc
+    - name: Deploy Javadoc to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./target/site/apidocs
+        destination_dir: javadoc/${{ github.event.ref_name }}
+
+  deploy-cobertura:
+    needs: deploy-maven
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Generate Cobertura Report
+      run: mvn cobertura:cobertura
+    - name: Deploy Cobertura Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./target/site/cobertura
+        destination_dir: cobertura/${{ github.event.ref_name }}
