@@ -12,11 +12,13 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
+  
 
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
         java-version: '17'
+        distribution: 'temurin'
 
     - name: Generate Javadoc
       run: mvn clean javadoc:javadoc
