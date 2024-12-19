@@ -21,7 +21,7 @@ jobs:
         distribution: 'temurin'
       
     - name: Navigate to Project Directory
-      run: cd codeReview/mavenproject1
+      run: cd codeReview/mavenproject1/
 
     - name: Generate Javadoc
       run: mvn clean javadoc:javadoc
